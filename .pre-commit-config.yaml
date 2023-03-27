@@ -1,0 +1,40 @@
+---
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.4.0
+  hooks:
+  - id: check-merge-conflict
+  - id: debug-statements
+  - id: check-builtin-literals
+  - id: check-added-large-files
+  - id: check-executables-have-shebangs
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: mixed-line-ending
+  - id: trailing-whitespace
+- repo: https://github.com/Lucas-C/pre-commit-hooks
+  rev: v1.4.2
+  hooks:
+  - id: insert-license
+    files: (Makefile|Dockerfile|\.yaml|\.yml|\.sh)
+    exclude: ^\.secrets/.*$|^\.git-crypt/.*$
+    args:
+    - --license-filepath
+    - LICENSE
+    - --remove-header
+- repo: https://github.com/jumanjihouse/pre-commit-hooks
+  rev: 3.0.0
+  hooks:
+  - id: shellcheck
+    exclude: hack/hooks/pre-commit.git-crypt.sh
+  - id: shfmt
+    args: ["-i 4"]
+- repo: https://github.com/adrienverge/yamllint.git
+  rev: v1.30.0
+  hooks:
+  - id: yamllint
+    # exclude:
+    #   ^gitops/(?:templates|files)/.*\.yaml
