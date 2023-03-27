@@ -17,6 +17,9 @@
 ---
 name: Docker / Publish
 
+permissions:
+  packages: write
+
 on:
   push:
     # branches:
